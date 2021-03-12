@@ -41,4 +41,7 @@ app.use('/api/v1/users', userController);
 const authController = require('controllers/authController');
 app.use('/api/v1', authController);
 
+const roleController = require('controllers/roleController');
+app.use('/api/v1/role', roleController);
+
 module.exports = app;

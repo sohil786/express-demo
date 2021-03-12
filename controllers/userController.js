@@ -5,6 +5,7 @@ const httpStatus = require('lib/httpStatus');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 var multer = require('multer');
+const verifyToken = require('../lib/verifyToken');
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -55,7 +56,7 @@ router.post('/', function (req, res, next) {
   }
 });
 
-router.get('/', function (req, res) {
+router.get('/', verifyToken, function (req, res) {
   User.find({}, function (err, users) {
     if (err) return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(`Server error: ${err.message}`);
     res.status(httpStatus.OK).send(users);

@@ -27,6 +27,11 @@ const userSchema = new Schema({
     required: true,
     type: String
   },
+  role_id: {
+    required: false,
+    default: 2,
+    type: Number
+  }
 });
 
 
